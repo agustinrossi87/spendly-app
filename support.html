@@ -1,46 +1,657 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spendly Support</title>
+  <meta
+    name="description"
+    content="Support page for Spendly, a personal budget and expense tracking app."
+  />
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 48px 20px;
-      line-height: 1.6;
-      color: #111827;
-      background: #ffffff;
+    :root {
+      --bg: #06122d;
+      --bg-2: #0b1b44;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.72);
+      --muted-2: rgba(255, 255, 255, 0.55);
+      --accent-red: #ff6b6b;
+      --accent-yellow: #e6cc70;
+      --accent-green: #3cc65a;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 18px;
+      --max-width: 1120px;
     }
-    h1, h2 { color: #0f172a; }
-    a { color: #2563eb; text-decoration: none; }
-    .card {
-      padding: 20px;
-      border: 1px solid #e5e7eb;
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 107, 107, 0.12), transparent 25%),
+        radial-gradient(circle at top right, rgba(60, 198, 90, 0.14), transparent 28%),
+        radial-gradient(circle at bottom center, rgba(230, 204, 112, 0.10), transparent 24%),
+        linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);
+      min-height: 100vh;
+      line-height: 1.6;
+      padding: 28px 18px 60px;
+    }
+
+    .wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 26px;
+      padding: 10px 4px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
       border-radius: 14px;
-      background: #f9fafb;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-text strong {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text span {
+      font-size: 0.9rem;
+      color: var(--muted-2);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+      font-size: 0.92rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.05));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: var(--shadow);
+      padding: 44px;
+      margin-bottom: 22px;
+      backdrop-filter: blur(16px);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(40px);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 220px;
+      height: 220px;
+      background: rgba(255, 107, 107, 0.18);
+      top: -70px;
+      left: -40px;
+    }
+
+    .hero::after {
+      width: 240px;
+      height: 240px;
+      background: rgba(60, 198, 90, 0.18);
+      right: -60px;
+      top: -40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+      font-size: 0.86rem;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 4vw, 4.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+      max-width: 680px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 640px;
+      margin-bottom: 24px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.96;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: #071433;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .hero-note {
+      color: var(--muted-2);
+      font-size: 0.92rem;
+    }
+
+    .phone-card {
+      justify-self: end;
+      width: min(100%, 340px);
+      border-radius: 34px;
+      padding: 18px;
+      background: rgba(2, 12, 32, 0.72);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.38);
+      backdrop-filter: blur(14px);
+    }
+
+    .phone-screen {
+      border-radius: 28px;
+      padding: 18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)),
+        #071433;
+      min-height: 470px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .phone-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .phone-title {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .balance-card {
+      border-radius: 24px;
+      padding: 18px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 16px;
+    }
+
+    .balance-card small {
+      color: var(--muted-2);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .balance-card strong {
+      display: block;
+      font-size: 2rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+
+    .chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+      height: 180px;
+      padding-top: 10px;
+    }
+
+    .bar {
+      width: 64px;
+      border-radius: 999px;
+    }
+
+    .bar.red {
+      height: 76px;
+      background: var(--accent-red);
+    }
+
+    .bar.yellow {
+      height: 138px;
+      background: var(--accent-yellow);
+    }
+
+    .bar.green {
+      height: 210px;
+      background: var(--accent-green);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin: 22px 0;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+
+    .card h2,
+    .card h3 {
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    .mini-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .mini-icon.red { background: var(--accent-red); }
+    .mini-icon.yellow { background: var(--accent-yellow); }
+    .mini-icon.green { background: var(--accent-green); }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 700px;
+      margin-bottom: 24px;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .faq {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .faq-item strong {
+      display: block;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .faq-item p {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .contact-card a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .contact-card .email {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    .contact-card .email:hover {
+      text-decoration: underline;
+    }
+
+    .list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      margin-top: 9px;
+      flex: 0 0 auto;
+    }
+
+    .dot.red { background: var(--accent-red); }
+    .dot.yellow { background: var(--accent-yellow); }
+    .dot.green { background: var(--accent-green); }
+
+    .footer {
+      text-align: center;
+      color: var(--muted-2);
+      font-size: 0.92rem;
+      padding-top: 14px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .support-grid,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-card {
+        justify-self: stretch;
+        width: 100%;
+      }
+
+      .hero {
+        padding: 28px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 16px 12px 44px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        border-radius: 26px;
+        padding: 22px;
+      }
+
+      .card {
+        border-radius: 22px;
+        padding: 18px;
+      }
+
+      .phone-screen {
+        min-height: 420px;
+      }
+
+      .bar {
+        width: 54px;
+      }
+
+      .cta-row {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Spendly Support</h1>
-  <p>Spendly is a personal finance app designed to help you track expenses, income, savings goals, and recurring transactions with clarity and ease.</p>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <img src="logo.png" alt="Spendly logo" />
+        <div class="brand-text">
+          <strong>Spendly</strong>
+          <span>Personal Budget App</span>
+        </div>
+      </div>
+      <div class="pill">Simple budgeting. Clear insights. Better habits.</div>
+    </div>
 
-  <div class="card">
-    <h2>Contact</h2>
-    <p>If you need help, want to report a bug, or have a question, contact us at:</p>
-    <p><a href="mailto:support@tudominio.com">agus.rossi@gmail.com</a></p>
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Support & Help Center</div>
+          <h1>Manage your money with more clarity.</h1>
+          <p>
+            Spendly is a personal budget app designed to help you track expenses,
+            understand your spending habits, and stay on top of your monthly goals
+            with a clean and simple experience.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:your@email.com">Contact Support</a>
+            <a class="btn btn-secondary" href="#help">View Help Topics</a>
+          </div>
+
+          <div class="hero-note">
+            Replace <strong>your@email.com</strong> with your real support email before publishing.
+          </div>
+        </div>
+
+        <div class="phone-card">
+          <div class="phone-screen">
+            <div>
+              <div class="phone-top">
+                <span class="phone-title">Overview</span>
+                <span style="color: rgba(255,255,255,0.55);">This Month</span>
+              </div>
+
+              <div class="balance-card">
+                <small>Total Balance</small>
+                <strong>$4,280</strong>
+                <small>Income, expenses, and category trends at a glance.</small>
+              </div>
+            </div>
+
+            <div class="chart" aria-hidden="true">
+              <div class="bar red"></div>
+              <div class="bar yellow"></div>
+              <div class="bar green"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-3">
+      <div class="card">
+        <div class="mini-icon red"></div>
+        <h3>Track daily expenses</h3>
+        <p>
+          Quickly log purchases, bills, subscriptions, and other transactions in one place.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="mini-icon yellow"></div>
+        <h3>Understand your budget</h3>
+        <p>
+          Review categories, monthly totals, and spending patterns with a clean visual layout.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="mini-icon green"></div>
+        <h3>Stay in control</h3>
+        <p>
+          Build better financial habits by keeping your money organized and easy to review.
+        </p>
+      </div>
+    </section>
+
+    <section id="help" class="card" style="margin-bottom: 18px;">
+      <h2 class="section-title">Help topics</h2>
+      <p class="section-subtitle">
+        Here are some of the most common things users may need help with in Spendly.
+      </p>
+
+      <div class="support-grid">
+        <div class="faq">
+          <div class="faq-item">
+            <strong>How do I add a transaction?</strong>
+            <p>
+              Open the app, create a new entry, choose income or expense, then select an amount and category.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <strong>Can I organize transactions by category?</strong>
+            <p>
+              Yes. Spendly is built to help you review spending using categories like food, transport, rent, and more.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <strong>How do I review my monthly budget?</strong>
+            <p>
+              Go to your monthly overview to compare totals, see trends, and understand where your money is going.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq">
+          <div class="faq-item">
+            <strong>The app is not saving correctly</strong>
+            <p>
+              Close and reopen the app first. If the issue continues, contact support with your device model and app version.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <strong>I found a bug</strong>
+            <p>
+              Please send a short description of the issue, the steps to reproduce it, and screenshots if available.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <strong>Need direct help?</strong>
+            <p>
+              Reach out by email and include as much detail as possible so support can help faster.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="support-grid">
+      <div class="card contact-card">
+        <h2>Contact</h2>
+        <p>
+          For support, questions, feedback, or bug reports, contact:
+        </p>
+        <a class="email" href="mailto:your@email.com">your@email.com</a>
+      </div>
+
+      <div class="card">
+        <h2>What to include</h2>
+        <ul class="list">
+          <li><span class="dot red"></span><span>Your device model</span></li>
+          <li><span class="dot yellow"></span><span>Your app version</span></li>
+          <li><span class="dot green"></span><span>A clear description of the issue</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="footer">
+      © 2026 Spendly. All rights reserved.
+    </div>
   </div>
-
-  <h2>App Information</h2>
-  <p>App: Spendly<br>Version: 1.0</p>
-
-  <h2>Language Support</h2>
-  <p>Spendly is available in English and Spanish.</p>
-
-  <h2>Data</h2>
-  <p>Your data is stored on your device. You can export and import your information from within the app.</p>
 </body>
 </html>
