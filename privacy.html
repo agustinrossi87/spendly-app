@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spendly Privacy Policy</title>
+  <meta
+    name="description"
+    content="Privacy Policy for Spendly, a personal budget and expense tracking app."
+  />
+  <style>
+    :root {
+      --bg: #06122d;
+      --bg-2: #0b1b44;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.74);
+      --muted-2: rgba(255, 255, 255, 0.56);
+      --accent-red: #ff6b6b;
+      --accent-yellow: #e6cc70;
+      --accent-green: #3cc65a;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --max-width: 980px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 107, 107, 0.12), transparent 25%),
+        radial-gradient(circle at top right, rgba(60, 198, 90, 0.14), transparent 28%),
+        radial-gradient(circle at bottom center, rgba(230, 204, 112, 0.10), transparent 24%),
+        linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);
+      min-height: 100vh;
+      line-height: 1.65;
+      padding: 28px 18px 60px;
+    }
+
+    .wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding: 8px 4px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-text strong {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text span {
+      font-size: 0.92rem;
+      color: var(--muted-2);
+    }
+
+    .nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.94rem;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: 0.2s ease;
+    }
+
+    .nav a:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.05));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: var(--shadow);
+      padding: 42px;
+      margin-bottom: 22px;
+      backdrop-filter: blur(16px);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(42px);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 220px;
+      height: 220px;
+      background: rgba(255, 107, 107, 0.16);
+      top: -70px;
+      left: -40px;
+    }
+
+    .hero::after {
+      width: 240px;
+      height: 240px;
+      background: rgba(60, 198, 90, 0.16);
+      right: -60px;
+      top: -40px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+      font-size: 0.86rem;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 760px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .section-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .red { background: var(--accent-red); }
+    .yellow { background: var(--accent-yellow); }
+    .green { background: var(--accent-green); }
+
+    h2 {
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    p, li {
+      color: var(--muted);
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    a {
+      color: #ffffff;
+    }
+
+    .muted {
+      color: var(--muted-2);
+      font-size: 0.95rem;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted-2);
+      font-size: 0.92rem;
+      padding-top: 10px;
+    }
+
+    @media (max-width: 680px) {
+      body {
+        padding: 16px 12px 44px;
+      }
+
+      .hero,
+      .card {
+        padding: 22px;
+        border-radius: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <img src="1024.png" alt="Spendly logo" />
+        <div class="brand-text">
+          <strong>Spendly</strong>
+          <span>Privacy Policy</span>
+        </div>
+      </div>
+
+      <div class="nav">
+        <a href="index.html">Support</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="eyebrow">Legal</div>
+      <h1>Privacy Policy</h1>
+      <p>
+        This Privacy Policy explains how Spendly collects, uses, and protects
+        information when you use the app.
+      </p>
+      <p class="muted" style="margin-top: 14px;">
+        Effective date: April 1, 2026
+      </p>
+    </section>
+
+    <section class="card">
+      <div class="section-dot red"></div>
+      <h2>1. Information We Collect</h2>
+      <p>
+        Spendly may collect information you provide directly in the app, such as:
+      </p>
+      <ul>
+        <li>Budget and transaction data you enter manually</li>
+        <li>Account-related information, if account features are offered</li>
+        <li>Support messages or feedback you send by email</li>
+      </ul>
+      <p style="margin-top: 12px;">
+        The app may also collect limited technical information such as device type,
+        app version, crash logs, or analytics data to improve app performance.
+      </p>
+    </section>
+
+    <section class="card">
+      <div class="section-dot yellow"></div>
+      <h2>2. How We Use Information</h2>
+      <p>We may use collected information to:</p>
+      <ul>
+        <li>Provide and maintain the app’s features</li>
+        <li>Save and organize your budget data</li>
+        <li>Improve app stability, performance, and user experience</li>
+        <li>Respond to support requests and bug reports</li>
+        <li>Detect, prevent, or address technical issues</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <div class="section-dot green"></div>
+      <h2>3. Data Sharing</h2>
+      <p>
+        We do not sell your personal information. We may share limited data with
+        service providers that help operate the app, such as analytics, crash
+        reporting, authentication, or cloud storage providers, only as needed to
+        support the app’s functionality.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>4. Data Retention</h2>
+      <p>
+        We keep information only for as long as necessary to provide the app,
+        comply with legal obligations, resolve disputes, and enforce agreements.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>5. Data Security</h2>
+      <p>
+        We take reasonable measures to protect your information. However, no method
+        of electronic storage or transmission over the internet is completely secure.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>6. Children’s Privacy</h2>
+      <p>
+        Spendly is not intended for children under 13. We do not knowingly collect
+        personal information from children under 13.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>7. Your Choices</h2>
+      <p>
+        Depending on how the app works, you may be able to update or delete your
+        data inside the app or by contacting us directly.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>8. Changes to This Policy</h2>
+      <p>
+        We may update this Privacy Policy from time to time. Any updates will be
+        posted on this page with a revised effective date.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>9. Contact</h2>
+      <p>
+        If you have any questions about this Privacy Policy, contact:
+      </p>
+      <p style="margin-top: 10px;">
+        <a href="mailto:your@email.com">your@email.com</a>
+      </p>
+    </section>
+
+    <div class="footer">
+      © 2026 Spendly. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>
